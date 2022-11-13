@@ -10,13 +10,18 @@
   <body>
     <div class="container" id="container">
       <h1>GUESS THE WEATHER</h1>
-      <div class="question-box">
+      <div class="question-box" id="question-box">
         <h3>What is the current temperature in...?</h3>
-        <h3></h3>
-        <input type="text" /> c°
-        <button>Submit</button>
+        <h3 id="cityNamePresent"></h3>
+        <form action="guess" name="guess" class="guess-form">
+          <input type="text" name="guess" class="guess-form__input" /> c°
+          <button class="button" id="submit-button">Submit</button>
+        </form>
       </div>
-      <div class="answer-box"></div>
+      <div class="answer-box">
+        <div id="answer"></div>
+        <button class="button" id="refresh-button">New question</button>
+      </div>
     </div>
     <script src="guess-weather.js" type="module"></script>
   </body>
