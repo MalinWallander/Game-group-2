@@ -5,7 +5,6 @@ import { cities, apiKey } from "./constants.js";
 //Set random number
 let randNum = Math.floor(Math.random() * cities.length);
 //Set elements and objects
-let lat, long, cityName, kelvin, temp;
 let cityNameEl = document.getElementById('cityNamePresent');
 let submitButtonEl = document.getElementById('submit-button');
 let refreshbuttonEl = document.getElementById('refresh-button');
@@ -20,23 +19,25 @@ const fetchCity = fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${citie
 });
 
 //Get temp for city based on coordinates
-const fetchTemp = fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=4c71ba6fffb38a4baae0fe5623ee9a03`)
+const fetchTemp = (lat, long) => {
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=4c71ba6fffb38a4baae0fe5623ee9a03`)
         .then(function(res) {
             return res.json();
             }).then(function(data) {
-                kelvin = data.main.temp;
+                let kelvin = data.main.temp;
                 return Math.floor(kelvin - 273.15);
             });
+        }
 
 window.onload = async () => {
     let data = await fetchCity;
-    cityName = data[0].name;
+    let cityName = data[0].name;
     cityNameEl.innerHTML = cityName;
-    lat = data[0].lat;
-    long = data[0].lon;
-    temp = await fetchTemp;
+    const lat = data[0].lat;
+    const long = data[0].lon;
+    let temp = await fetchTemp(lat, long);
     console.log(cityName, temp);
-};
+    };
 
 //Refresh button
 const refreshButton = document.getElementById('refresh-button');
