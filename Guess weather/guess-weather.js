@@ -1,3 +1,5 @@
+"use strict";
+
 import { cities, apiKey } from "./constants.js";
 
 //Set random number
