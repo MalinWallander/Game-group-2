@@ -1,4 +1,5 @@
 import { cities, apiKey } from "./constants.js";
+
 //Set random number
 let randNum = Math.floor(Math.random() * cities.length);
 //Set elements and objects
@@ -44,18 +45,11 @@ const refreshPage = () => {
 
 refreshButton.addEventListener('click', refreshPage);
 
-//Get guess and match it
+//Get guess
 form.onsubmit = function (event) {
     event.preventDefault();
     let guess = this.elements.guess.value;
 
     console.log(guess);
-    
-        if (guess === temp){
-       alert('You are so good at this!');
-        }
-        else if (isNaN(guess)) {
-       alert('That is not a number!');
-        }
-    
+
 }
