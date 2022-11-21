@@ -18,7 +18,8 @@ const fetchCity = fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${citie
     .then(data => {
         return data;
 });
- 
+
+//function 
 function showMessage(message) {
     messageEl.innerHTML = message;
  }
