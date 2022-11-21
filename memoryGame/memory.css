@@ -35,7 +35,7 @@ body {
 
 .cell div {
   height: 130px;
-  border-radius: 5px;
+  border-radius: 20px;
 }
 .cell {
   position: relative;
