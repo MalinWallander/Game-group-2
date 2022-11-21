@@ -3,12 +3,21 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- minify -->
+
+    <!-- <link rel="stylesheet" href="./node_modules/nes.css/css/nes.min.css" /> -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Press+Start+2P"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="memory.css" />
 
     <title>Memory Game</title>
   </head>
   <body>
-    <div class="head">
+    <div class="nes-container with-title head">
       <h2>Memory Game new save</h2>
       <div class="score">Score: <span>0</span></div>
     </div>
@@ -96,7 +105,10 @@
         <div class="back"></div>
       </div>
     </div>
-    <button class="button" id="refresh-button">New Game</button>
+    <div class="btn-class">
+      <button class="nes-btn is-primary" id="refresh-button">New Game</button>
+    </div>
+
     <script defer src="memory.js"></script>
   </body>
 </html>
