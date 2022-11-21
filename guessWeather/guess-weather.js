@@ -7,7 +7,6 @@ let randNum = Math.floor(Math.random() * cities.length);
 //Set elements and objects
 let cityNameEl = document.getElementById('cityNamePresent');
 let submitButtonEl = document.getElementById('submit-button');
-let refreshbuttonEl = document.getElementById('refresh-button');
 let answerEl = document.getElementById('answer');
 let form = document.forms.guess;
 let messageEl = document.getElementById('answer');

@@ -9,12 +9,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //create start button element to run main and gen_food function (and hide the button) to start the game
 let startButtonEl = document.getElementById("start-button");
+let refreshButtonEl = document.getElementById("refresh-button");
 function startGame(){ 
     startButtonEl.classList.add("hidden");
+    refreshButtonEl.classList.remove("hidden");
     main();
     gen_food();
 }
 startButtonEl.addEventListener("click", startGame);
+
+const refreshPage = () => {
+    window.location.reload();
+  }
+  
+  refreshButtonEl.addEventListener('click', refreshPage);
 
 //get canvas element
 const snakeBoard = document.getElementById("gameCanvas");
