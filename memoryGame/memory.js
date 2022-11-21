@@ -5,6 +5,7 @@ const score = document.querySelector(".score span");
 const refreshButton = document.getElementById("refresh-button");
 suffleImage();
 clicking();
+
 function suffleImage() {
   card.forEach((c) => {
     const num = [...Array(card.length).keys()];
@@ -13,7 +14,7 @@ function suffleImage() {
     c.style.order = num[random];
   });
 }
-
+console.log(suffleImage);
 function clicking() {
   for (let i = 0; i < card.length; i++) {
     front[i].classList.add("show");
