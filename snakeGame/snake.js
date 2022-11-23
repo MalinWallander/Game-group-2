@@ -1,33 +1,57 @@
 "use strict";
 //Show the score
 document.addEventListener("DOMContentLoaded", function () {
-    let pTag = document.querySelector("div");
+    let score = document.querySelector("div");
     let newVal = document.createElement("p");
     newVal.innerHTML = '';
-    pTag.appendChild(newVal);
+    score.appendChild(newVal);
   });
 
+const timerEl = document.getElementById("timer");
+let timer;
+let timerStart;
+  
 //create start button element to run main and gen_food function (and hide the button) to start the game
 let startButtonEl = document.getElementById("start-button");
 let refreshButtonEl = document.getElementById("refresh-button");
+
 function startGame(){ 
+    timerStart = Date.now();
     startButtonEl.classList.add("hidden");
     refreshButtonEl.classList.remove("hidden");
     main();
     gen_food();
+    timer = setInterval(() => {
+        updateTimer();
+      }, 10);
 }
 startButtonEl.addEventListener("click", startGame);
 
+function updateTimer() {
+    const time = Date.now() - timerStart;
+    const minutes = Math.floor(time/ 1000 /60);
+    const seconds = Math.floor(time / 1000) % 60;
+    const centiseconds = Math.floor(time / 10) % 100;
+
+    let displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    let displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
+    let displayCentiseconds = centiseconds < 10 ? `0${centiseconds}` : centiseconds;
+  
+    timerEl.innerHTML = `${displayMinutes}:${displaySeconds}:${displayCentiseconds}`;
+}
+//Add function to refresh-button, to start a new game
 const refreshPage = () => {
     window.location.reload();
   }
   
   refreshButtonEl.addEventListener('click', refreshPage);
 
+
 //get canvas element
 const snakeBoard = document.getElementById("gameCanvas");
 const snakeBoard_ctx = gameCanvas.getContext("2d");
 
+//set colors for snake and board
 const board_border = 'black';
 const board_background = 'white';
 const snake_col = 'lightblue';
@@ -73,6 +97,7 @@ document.addEventListener("keydown", change_direction);
     function main() {  
         if (has_game_ended()) {
             alert("Game over!");
+            clearInterval(timer);
             return;
         }
 
@@ -157,7 +182,6 @@ document.addEventListener("keydown", change_direction);
           if (has_eaten) gen_food();
         });
       }
-
 
       //Naming keys, connecting them to keyboard number
     function change_direction(event) {

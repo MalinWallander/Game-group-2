@@ -40,3 +40,9 @@
   height: 40px;
   background-color: lightblue;
 }
+
+.timer {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
