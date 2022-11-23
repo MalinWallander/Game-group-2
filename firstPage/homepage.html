@@ -1,27 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta class="nes-btn is-primary" charset="UTF-8" />
+    <meta
+      class="nes-btn is-primary"
+      http-equiv="X-UA-Compatible"
+      content="IE=edge"
+    />
+    <meta
+      class="nes-btn is-primary"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>Document</title>
     <link rel="stylesheet" href="homepage.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- latest -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- core style only -->
+    <link
+      href="https://unpkg.com/nes.css/css/nes-core.min.css"
+      rel="stylesheet"
+    />
+    <span class="nes-text is-primary"></span>
   </head>
   <body>
     <div class="container" id="container-content">
       <header>
-        <h1>GEOGRAPHY ARCADE</h1>
-        <h3>
-          Welcome to our arcade where you test you knowledge about the world!
-        </h3>
+        <h1 class="header">GEOGRAPHY ARCADE</h1>
       </header>
-      <div class="menu" id="menu">
-        <h3>Choose a game!</h3>
-        <a href="../guessWeather/guess-weather.html">GUESS THE TEMPERATURE</a>
-        <a href="../memoryGame/memory.html">FLAG MEMORY</a>
-        <a href=".../snakeGame/snake.html">SNAKE</a>
-        <a href=".../quizGame/quiz.html">QUIZ</a>
-        <a href="../wishlist/wishlist.html">CREATE YOUR OWN BUCKETLIST</a>
+      <h3 class="description">
+        Welcome to our arcade where you test you knowledge about the world!
+      </h3>
+      <div class="container-images">
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+        <img
+          class="arcade-game-image"
+          src="arcade-game.jpg"
+          alt="arcade-game"
+        />
+      </div>
+      <div class="menu nes-container with-title is-centered" id="menu">
+        <h3 class="title">Choose a game!</h3>
+        <div class="options" id="options">
+          <a
+            class="nes-btn is-primary"
+            href="../guessWeather/guess-weather.html"
+          >
+            GUESS THE TEMPERATURE
+          </a>
+          <a class="nes-btn is-primary" href="../memoryGame/memory.html">
+            FLAG MEMORY
+          </a>
+          <a class="nes-btn is-primary" href="../snakeGame/snake.html">
+            SNAKE
+          </a>
+          <a class="nes-btn is-primary" href="../quizGame/quiz.html"> QUIZ </a>
+          <a class="nes-btn is-primary" href="../wishlist/wishlist.html">
+            CREATE YOUR OWN BUCKETLIST
+          </a>
+        </div>
       </div>
     </div>
     <script src="homepage.js"></script>

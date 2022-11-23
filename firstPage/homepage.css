@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
+}
+
+.options {
+  padding: 4rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+}
+
+.description {
+  text-align: center;
+  padding: 2rem;
+}
+
+button {
+  padding: 1rem;
+}
+
+.arcade-game-image {
+  width: 7%;
+}
+
+.container-images {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+}
+
+.menu {
+  padding: 3rem;
+}
