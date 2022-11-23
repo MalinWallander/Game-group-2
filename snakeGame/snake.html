@@ -5,7 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="snake.css">                    
+    <link rel="stylesheet" href="snake.css">
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+<!-- latest -->
+<link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+<!-- core style only -->
+<link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+<span class="nes-text is-primary"></span>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
     <div id="score" class="score">0</div>
@@ -13,7 +22,13 @@
     <button id="start-button" class="start-button">Start game</button>
     <button id="refresh-button" class="refresh-button hidden">Start new game</button>
     <div id="game-over-banner" class=""></div>
+    <div class="nes-balloon from-left">
+        <p>Use the arrows on your keyboard to move the snake</p>
+      </div>
     <canvas id="gameCanvas" class="gameCanvas" width="400" height="400"><canvas></canvas>
+    <p>
+        This is not a clickable element, but it's an area of the pointer.
+      </p>
     <script src="snake.js"></script>
 </body>
 </html>

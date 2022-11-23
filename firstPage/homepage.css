@@ -7,8 +7,6 @@
 
 .options {
   padding: 4rem;
-  display: flex;
-  justify-content: space-between;
 }
 
 .header {
@@ -37,4 +35,6 @@ button {
 
 .menu {
   padding: 3rem;
+  width: 90%;
+  margin: auto;
 }

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
 }
 
 .gameCanvas {
@@ -11,7 +12,7 @@
   transform: translate(-50%, -50%);
 }
 .score {
-  font-size: 8rem;
+  font-size: 4rem;
   text-align: center;
 }
 
@@ -24,7 +25,7 @@
   height: 80px;
   width: 160px;
   background-color: lightblue;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 
 .hidden {
@@ -39,10 +40,18 @@
   width: 80px;
   height: 40px;
   background-color: lightblue;
+  font-size: 0.5rem;
 }
 
 .timer {
   position: absolute;
   left: 50%;
   transform: translate(-50%);
+}
+
+.nes-balloon {
+  position: absolute;
+  top: 500px;
+  width: 20%;
+  font-size: 0.5rem;
 }
