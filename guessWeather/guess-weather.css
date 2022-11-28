@@ -34,7 +34,7 @@
 
 .submit-button {
   padding: 3px;
-  margin-top: 3rem;
+  margin-top: 15px !important;
 }
 .refresh-button {
   padding: 3px;

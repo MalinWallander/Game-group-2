@@ -74,3 +74,11 @@
 .game-over-text {
   margin: auto;
 }
+
+.background {
+  background-image: url("../snakeGame/background.jpeg");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
