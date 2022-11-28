@@ -1,6 +1,6 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: sans-serif;
+    font-family: "Press Start 2P", cursive;
   }
   
   :root {

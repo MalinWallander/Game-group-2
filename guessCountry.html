@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <!-- latest -->
+    <link href="https://unpkg.com/nes.css@latest/css/nes.min.css" rel="stylesheet" />
+    <!-- core style only -->
+    <link href="https://unpkg.com/nes.css/css/nes-core.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+    <link href="https://unpkg.com/nes.css/css/nes.css" rel="stylesheet" />
+
+    <style>
+      html, body, pre, code, kbd, samp {
+          font-family: "Press Start 2P";
+      }
+    </style>
+    <style>
+        body {
+            height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        .image {
+            width: 20%;
+            height: auto;
+        }
+
+        p {
+            font-size: 1.6vw;
+        }
+
+        .nes-btn {
+            height: 5% !important;
+            width: 20% !important;
+            margin-top: 2vw;
+            font-size: 1.2vw;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+    <script>
+    // Track points
+    let points = 0;
+    // track rounds
+    let rounds = 0;
+    
+    function wrongAnswer() {
+
+    }
+    
+    var countries = [
+        {alphatwo: "BI", name: "Burundi"},
+        {alphatwo: "BS", name: "Bahamas"},
+        {alphatwo: "CA", name: "Canada"},
+        {alphatwo: "CG", name: "Congo"},
+        {alphatwo: "CO", name: "Colombia"},
+        {alphatwo: "DK", name: "Denmark"},
+    ];
+
+    var countries_clone = structuredClone(countries);
+    console.log(countries_clone, "här");
+
+    
+    
+    function game() {
+        
+        var randomCountry = countries[Math.floor(Math.random()*countries.length)];
+        const image = document.createElement('img');
+        image.src = "https://flagsapi.com/"+randomCountry.alphatwo+"/flat/64.png"
+        image.onload = function () {
+            const p = document.createElement("p");
+            p.innerHTML = "Scoreboard: " + points;
+            document.body.appendChild(p);
+            image.classList.add('image');
+            document.body.appendChild(image);
+            const falseBtn = document.createElement("button");
+            falseBtn.classList.add('nes-btn')
+            
+            const button = document.createElement("button");
+            button.classList.add('nes-btn')
+            button.textContent = randomCountry.name;
+
+            for (var j = 0; j < countries_clone.length; j++) {
+                if (countries_clone[j].name === randomCountry.name) {
+                    countries_clone.splice(j,1);
+                    break;
+            }}
+
+
+            var randomCountry_clone = countries_clone[Math.floor(Math.random()*countries_clone.length)];
+            falseBtn.textContent = randomCountry_clone.name;
+
+            button.onclick = function() {
+                rounds += 1;
+                if (rounds < 3) {
+                    for (var i = 0; i < countries.length; i++) {
+                        if (countries[i].name === randomCountry.name) {
+                            countries.splice(i,1);
+                            break;
+                        }
+                    }
+                
+                points += 1;
+                p.innerHTML = "Scoreboard: " + points;
+                button.classList.add('is-success');
+
+                setTimeout(() => {
+                    document.body.innerHTML = '';
+                    game();
+                    }, "1000")
+             
+            }
+
+            else if (rounds == 3) {
+                points += 1;
+                p.innerHTML = "Scoreboard: " + points;
+                button.classList.add('is-success');
+
+                setTimeout(() => {
+                    document.body.innerHTML = '';
+                    console.log("har nu raderat innehållet");
+                    const p = document.createElement("p");
+                    p.innerHTML = "You got "+points+"/3 points!";
+                    document.body.appendChild(p);
+                
+                    }, "1000")
+            }
+        }
+
+
+         falseBtn.onclick = function() {
+             rounds += 1;
+             if (rounds < 3) {
+                 for (var i =0; i < countries.length; i++)
+                    if (countries[i].name === randomCountry.name) {
+                        countries.splice(i,1);
+                        break;
+                    }
+
+             
+
+                
+            points += 0;
+            p.innerHTML = "Scoreboard: " + points;
+            falseBtn.classList.add('is-error');
+            
+            setTimeout(() => {
+                document.body.innerHTML = '';
+                game();
+            }, "1000")
+        }
+
+            else if (rounds == 3) {
+                points += 0;
+                p.innerHTML = points;
+                falseBtn.classList.add('is-error');
+
+                setTimeout(() => {
+                    document.body.innerHTML = '';
+                    const p = document.createElement("p");
+                    p.innerHTML = "You got "+points+"/3 points!";
+                    document.body.appendChild(p);
+                    p.innerHTML = "You got "+points+"/3 points!";
+                    }, "1000")
+            }
+    
+         }
+
+         if (rounds == 0) {
+             console.log(rounds+"första");
+             document.body.appendChild(button);
+             document.body.appendChild(falseBtn);
+         }
+
+         else if (rounds == 1) {
+            console.log(rounds+"andra");
+            document.body.appendChild(falseBtn);
+            document.body.appendChild(button);
+            
+         }
+
+         else if (rounds == 2) {
+            console.log(rounds+"andra");
+            document.body.appendChild(button);
+            document.body.appendChild(falseBtn);
+            
+         }
+        }
+    }
+    
+    game();
+
+    </script>
+</body>
+</html>
