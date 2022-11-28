@@ -6,12 +6,48 @@
 }
 
 .container {
+  width: 80%;
+  margin: auto;
   display: flex;
-  width: 100vw;
-  height: 100 vh;
 }
 
 .header {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem;
+  font-size: 4rem;
+}
+
+.background {
+  background-image: url("../guessWeather/background-weather.png.crdownload");
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.question-box {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.submit-button {
+  padding: 3px;
+  margin-top: 3rem;
+}
+.refresh-button {
+  padding: 3px;
+}
+
+.answer-box {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  margin: 3rem;
+  background-color: white;
+}
+
+.answer {
+  height: 50px;
 }

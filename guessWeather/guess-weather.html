@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="guess-weather.css" />
     <link
       href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
       rel="stylesheet"
@@ -26,25 +27,38 @@
       href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
       rel="stylesheet"
     />
-    <script src="guess-weather.css"></script>
   </head>
   <body>
-    <div class="container" id="container">
+    <div class="background">
       <h1 class="header">GUESS THE WEATHER</h1>
-      <div class="question-box" id="question-box">
-        <h3>What is the current temperature in...?</h3>
-        <h3 id="cityNamePresent"></h3>
-        <form action="guess" name="guess" class="guess-form">
-          <input type="text" name="guess" class="guess-form_input" />
-          c°
-          <button class="button" id="submit-button">Submit</button>
-        </form>
-      </div>
-      <div class="answer-box">
-        <div id="answer">
-          <p></p>
+      <div class="container" id="container">
+        <div
+          class="question-box nes-container with-title is-centered"
+          id="question-box"
+        >
+          <h3 class="title">What is the current temperature in...?</h3>
+          <h2 id="cityNamePresent"></h2>
+          <form action="guess" name="guess" class="guess-form">
+            <input
+              type="text"
+              name="guess"
+              class="guess-form_input nes-input"
+            />
+            c°
+            <button class="submit-button nes-btn" id="submit-button">
+              Submit
+            </button>
+          </form>
         </div>
-        <button class="button" id="refresh-button">New city</button>
+        <div class="answer-box nes-container with-title is-centered">
+          <p class="title">Answer</p>
+          <div class="answer" id="answer">
+            <p></p>
+          </div>
+          <button class="refresh-button nes-btn" id="refresh-button">
+            New city
+          </button>
+        </div>
       </div>
     </div>
     <script src="guess-weather.js" type="module"></script>

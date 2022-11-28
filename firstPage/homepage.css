@@ -7,6 +7,10 @@
 
 .options {
   padding: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  row-gap: 2rem;
 }
 
 .header {
@@ -17,10 +21,6 @@
 .description {
   text-align: center;
   padding: 2rem;
-}
-
-button {
-  padding: 1rem;
 }
 
 .arcade-game-image {
