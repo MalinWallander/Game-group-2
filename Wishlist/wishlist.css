@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.nes-container {
+  width: 500px;
+  align-items: center;
+  position: absolute;
+  top: auto;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.header {
+  text-align: center;
+  margin: 2rem;
+}
+
+.add-button {
+  margin-top: 1rem;
+}

@@ -1,5 +1,5 @@
 "use strict";
-//Show the score
+//Show the score and set it to start with 0
 document.addEventListener("DOMContentLoaded", function () {
     let score = document.querySelector("div");
     let newVal = document.createElement("p");
@@ -7,14 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     score.appendChild(newVal);
   });
 
+  let score = 0;
+
+  //Set variables for the timer
 const timerEl = document.getElementById("timer");
 let timer;
 let timerStart;
   
-//create start button element to run main and gen_food function (and hide the button) to start the game
+//create start button element to run main and gen_food function, start timer, and hide the button to start the game
 let startButtonEl = document.getElementById("start-button");
 let refreshButtonEl = document.getElementById("refresh-button");
 
+//Start and keep game running
 function startGame(){ 
     timerStart = Date.now();
     startButtonEl.classList.add("hidden");
@@ -25,14 +29,17 @@ function startGame(){
         updateTimer();
       }, 10);
 }
+//eventlistner to start function startGame when it's clicked
 startButtonEl.addEventListener("click", startGame);
 
+//seeting the timer så it updates and shows the corrct minutes, seconds and centiseconds
 function updateTimer() {
     const time = Date.now() - timerStart;
     const minutes = Math.floor(time/ 1000 /60);
     const seconds = Math.floor(time / 1000) % 60;
     const centiseconds = Math.floor(time / 10) % 100;
 
+    //put 0 before the number if it is below 10, to make it look better
     let displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
     let displaySeconds = seconds < 10 ? `0${seconds}` : seconds;
     let displayCentiseconds = centiseconds < 10 ? `0${centiseconds}` : centiseconds;
@@ -51,13 +58,11 @@ const refreshPage = () => {
 const snakeBoard = document.getElementById("gameCanvas");
 const snakeBoard_ctx = gameCanvas.getContext("2d");
 
-//set colors for snake and board
+//set colors for board
 const board_border = 'black';
 const board_background = 'white';
-const snake_col = 'lightblue';
-const snake_border = 'darkblue';
    
-//create array that is the snake
+//create array that is the snake-train
 let snake = [
     {x: 200, y: 200},
     {x: 190, y: 200},
@@ -66,7 +71,6 @@ let snake = [
     {x: 160, y: 200}
     ]
 
-let score = 0;
 // True if changing direction
 let changing_direction = false;
 // Horizontal velocity
@@ -77,26 +81,14 @@ let dx = 10;
 // Vertical velocity, delta y
 let dy = 0;
 
-function drawSnakePart(snakePart) 
-{  
-  snakeBoard_ctx.fillStyle = 'lightblue';  
-  snakeBoard_ctx.strokestyle = 'darkblue';
-  snakeBoard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);  
-  snakeBoard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
-}
- 
-/*Function that prints the parts*/
-function drawSnake() 
-{  
-  snake.forEach(drawSnakePart);
-}
-
 document.addEventListener("keydown", change_direction);
+
+const gameOverBannerEl = document.getElementById("game-over-banner");
     
     // main function called repeatedly to keep the game running
     function main() {  
         if (has_game_ended()) {
-            alert("Game over!");
+            gameOverBannerEl.classList.remove("hidden");
             clearInterval(timer);
             return;
         }
@@ -106,7 +98,7 @@ document.addEventListener("keydown", change_direction);
             setTimeout(function onTick() 
             {    
                 clearCanvas(); 
-                drawFood();   
+                drawGlobe();   
                 moveSnake();  
                 drawSnake();
                 // Call main again, recursive method
@@ -129,32 +121,40 @@ document.addEventListener("keydown", change_direction);
     
     // Draw the snake on the canvas
     function drawSnake() {
-      // Draw each part
-      snake.forEach(drawSnakePart)
+      // Draw the locomotive in the first part of the train
+      drawLocomotive(snake[0]);
+      // Draw the rest of the train, slicing the first part
+      snake.slice(1).forEach(drawTraincart);
     }
 
-    function drawFood() {
-        snakeBoard_ctx.fillStyle = 'lightgreen';
-        snakeBoard_ctx.strokestyle = 'darkgreen';
-        snakeBoard_ctx.fillRect(food_x, food_y, 10, 10);
-        snakeBoard_ctx.strokeRect(food_x, food_y, 10, 10);
+    //set the globe picture as food
+    function drawGlobe() {
+      let globe_image = new Image();
+      globe_image.src = "globe-2.png";
+      globe_image.onload = function(){
+        snakeBoard_ctx.drawImage(globe_image, food_x, food_y, 10, 10);
       }
-    
-    // Draw one snake part
-    function drawSnakePart(snakePart) {
-
-      // Set the colour of the snake part
-      snakeBoard_ctx.fillStyle = snake_col;
-      // Set the border colour of the snake part
-      snakeBoard_ctx.strokestyle = snake_border;
-      // Draw a "filled" rectangle to represent the snake part at the coordinates
-      // the part is located
-      snakeBoard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
-      // Draw a border around the snake part
-      snakeBoard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
     }
 
-    //Set parameters to see if snake hits wall or self
+    //set the locomotive picture as the head of the snake-train
+    function drawLocomotive(snakePart){
+      let locomotive = new Image()
+      locomotive.src = "locomotive.webp";
+        locomotive.onload = function(){
+          snakeBoard_ctx.drawImage(locomotive, snakePart.x, snakePart.y, 10, 10)
+        }
+    }
+
+    //set the trincart image as part of the body of the snake-train
+    function drawTraincart(snakePart){
+      let traincart = new Image()
+      traincart.src = "traincart.jpg";
+        traincart.onload = function(){
+          snakeBoard_ctx.drawImage(traincart, snakePart.x, snakePart.y, 10, 10)
+        }
+    }
+
+    //Set parameters to see if snake-train hits wall or self
     function has_game_ended() {
         for (let i = 4; i < snake.length; i++) {
           if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
@@ -190,10 +190,10 @@ document.addEventListener("keydown", change_direction);
         const UP_KEY = 38;
         const DOWN_KEY = 40;
 
-        // Prevent the snake from reversing
+        // Prevent the train from reversing
     
         if (changing_direction) return;
-
+        // see which direction the snake-train is going
         else {
             changing_direction = true;
             const keyPressed = event.keyCode;
@@ -201,7 +201,7 @@ document.addEventListener("keydown", change_direction);
             const goingDown = dy === 10;
             const goingRight = dx === 10;
             const goingLeft = dx === -10;
-        
+          //change direction based on key pressed, if the snake-train isn't already going there
             if (keyPressed === LEFT_KEY && !goingRight) {
                 dx = -10;
                 dy = 0;
@@ -222,9 +222,9 @@ document.addEventListener("keydown", change_direction);
     }
 
     function moveSnake() {
-        // Create the new Snake's head
+        // Create the new Snake-train's head
         const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-        // Add the new head to the beginning of snake body
+        // Add the new head to the beginning of snake-train body
         snake.unshift(head);
         const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
         if (has_eaten_food) {
@@ -235,7 +235,7 @@ document.addEventListener("keydown", change_direction);
           // Generate new food location
           gen_food();
         } else {
-          // Remove the last part of snake body
+          // Remove the last part of snake-train body
           snake.pop();
         }
       }

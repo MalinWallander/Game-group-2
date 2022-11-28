@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Press Start 2P", cursive;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100 vh;
+}
+
+.header {
+  text-align: center;
+  padding: 2rem;
+}

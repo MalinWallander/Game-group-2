@@ -6,14 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="wishlist.css" />
+    <link
+      href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- latest -->
+    <link
+      href="https://unpkg.com/nes.css@latest/css/nes.min.css"
+      rel="stylesheet"
+    />
+    <!-- core style only -->
+    <link
+      href="https://unpkg.com/nes.css/css/nes-core.min.css"
+      rel="stylesheet"
+    />
+    <span class="nes-text is-primary"></span>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <ul id="wishlist"></ul>
-    <form id="wishlistForm">
-      <input type="text" name="wish" />
-      <button type="submit" id="addWish">Add destination</button>
-    </form>
-
+    <div class="container-content" id="container">
+      <header class="header">
+        <h1 class="title">Make your own bucketlist!</h1>
+      </header>
+      <div class="nes-container with-title is-centered">
+        <p class="title">Where do you want to go?</p>
+        <form id="wishlistForm" class="wishlist-form">
+          <input type="text" name="wish" class="wish-input nes-input" />
+          <button type="submit" id="addWish" class="add-button">
+            Add destination
+          </button>
+        </form>
+      </div>
+      <ul id="wishlist" class="wishlist nes-list is-disc"></ul>
+    </div>
     <script src="wishlist.js"></script>
   </body>
 </html>

@@ -10,6 +10,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  height: 60%;
 }
 .score {
   font-size: 4rem;
@@ -30,6 +31,7 @@
 
 .hidden {
   display: none;
+  visibility: hidden;
 }
 
 .refresh-button {
@@ -54,4 +56,21 @@
   top: 500px;
   width: 20%;
   font-size: 0.5rem;
+  height: 10%;
+}
+
+.game-over-banner {
+  display: flex;
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: solid 3px black;
+  z-index: 3;
+  background-color: red;
+}
+.game-over-text {
+  margin: auto;
 }

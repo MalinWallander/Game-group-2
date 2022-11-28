@@ -40,6 +40,7 @@ const fetchTemp = (lat, long) => {
                 .catch(err => showErrormessage("Sorry, something went wrong. Try again!"))
                 };
 
+//wait for and set variables from the API-information fetched
 window.onload = async () => {
     let data = await fetchCity;
     let cityName = data[0].name;
@@ -70,7 +71,7 @@ form.onsubmit = function (event) {
     guess = Number(guess);
     temp = Number(temp);
 
-    
+    //compare guess and temp, sending message to the player if it's correct or not
     if (guess === temp) {
         showMessage("Success!");
     }
