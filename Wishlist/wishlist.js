@@ -16,13 +16,23 @@ function updateWishes () {
         liEl.innerHTML = wish;
 
         const removeButton = document.createElement("button");
-        removeButton.innerHTML = "Remove destination";
+        removeButton.setAttribute("class", "remove-button");
+        removeButton.innerHTML = "Remove";
         removeButton.onclick = function() {
             const index = wishes.indexOf(wish);
             wishes.splice(index, 1);
 
             updateWishes();
-        };
+        }
+
+       /* const doneButton = document.createElement("button");
+        doneButton.setAttribute("class", "done-button");
+        doneButton.innerHTML = "Done!"
+        doneButton.onclick = function(){
+           liEl.setAttribute("class", "done");
+
+
+        }*/
 
         liEl.append(removeButton);
 
