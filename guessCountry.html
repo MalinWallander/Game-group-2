@@ -25,27 +25,54 @@
             margin: 0;
             padding: 0;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
 
 
         }
 
+        .wrapper {
+            width: 40%;
+            height:80%;
+            display: flex;
+            flex-direction: column;
+        }
+
+
+
         .image {
-            width: 20%;
-            height: auto;
+            max-width: 100%;
+            max-height: 100%;
         }
 
         p {
             font-size: 1.6vw;
+            text-align: center;
         }
 
         .nes-btn {
-            height: 5% !important;
-            width: 20% !important;
+/*             height: 5% !important;
+            width: 20% !important; */
             margin-top: 2vw;
             font-size: 1.2vw;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .wrapper {
+                height: 100%;
+                width: 100%;
+            }
+
+            p {
+                font-size:22px;
+            }
+
+            .nes-btn {
+/*             height: 5% !important;
+            width: 20% !important; */
+            margin-top: 2vw;
+            font-size: 14px;
+        }
         }
 
 
@@ -54,15 +81,14 @@
     </style>
 </head>
 <body>
+    
     <script>
     // Track points
     let points = 0;
     // track rounds
     let rounds = 0;
-    
-    function wrongAnswer() {
 
-    }
+
     
     var countries = [
         {alphatwo: "BI", name: "Burundi"},
@@ -71,14 +97,27 @@
         {alphatwo: "CG", name: "Congo"},
         {alphatwo: "CO", name: "Colombia"},
         {alphatwo: "DK", name: "Denmark"},
+        {alphatwo: "AF", name: "Afghanistan"},
+        {alphatwo: "AU", name: "Australia"},
+        {alphatwo: "BM", name: "Bermuda"},
+        {alphatwo: "BR", name: "Brazil"}
     ];
 
     var countries_clone = structuredClone(countries);
     console.log(countries_clone, "här");
 
+
     
     
     function game() {
+
+        var wrapper = document.createElement('div');
+        wrapper.classList.add('wrapper');
+        wrapper.classList.add('nes-container');
+        wrapper.classList.add('is-rounded');
+      
+        
+        document.body.append(wrapper);
         
         var randomCountry = countries[Math.floor(Math.random()*countries.length)];
         const image = document.createElement('img');
@@ -86,9 +125,9 @@
         image.onload = function () {
             const p = document.createElement("p");
             p.innerHTML = "Scoreboard: " + points;
-            document.body.appendChild(p);
+            wrapper.appendChild(p);
             image.classList.add('image');
-            document.body.appendChild(image);
+            wrapper.appendChild(image);
             const falseBtn = document.createElement("button");
             falseBtn.classList.add('nes-btn')
             
@@ -135,9 +174,20 @@
                 setTimeout(() => {
                     document.body.innerHTML = '';
                     console.log("har nu raderat innehållet");
+                    var wrapper = document.createElement('div');
+                    wrapper.classList.add('wrapper');
+                    wrapper.classList.add('nes-container');
+                    wrapper.classList.add('is-rounded');
+                    document.body.append(wrapper);
                     const p = document.createElement("p");
                     p.innerHTML = "You got "+points+"/3 points!";
-                    document.body.appendChild(p);
+                    wrapper.appendChild(p);
+                    var refreshButton = document.createElement('button');
+                    refreshButton.onclick = function() {
+                        window.location.reload();
+                    }
+                    refreshButton.textContent = "Play again"
+                    wrapper.appendChild(refreshButton);
                 
                     }, "1000")
             }
@@ -174,9 +224,20 @@
                 setTimeout(() => {
                     document.body.innerHTML = '';
                     const p = document.createElement("p");
+                    var wrapper = document.createElement('div');
+                    wrapper.classList.add('wrapper');
+                    wrapper.classList.add('nes-container');
+                    wrapper.classList.add('is-rounded');
+                    document.body.append(wrapper);
                     p.innerHTML = "You got "+points+"/3 points!";
-                    document.body.appendChild(p);
-                    p.innerHTML = "You got "+points+"/3 points!";
+                    wrapper.appendChild(p);
+                    var refreshButton = document.createElement('button');
+                    refreshButton.onclick = function() {
+                        window.location.reload();
+                    }
+                    refreshButton.textContent = "Play again";
+                    wrapper.appendChild(refreshButton);
+
                     }, "1000")
             }
     
@@ -184,21 +245,21 @@
 
          if (rounds == 0) {
              console.log(rounds+"första");
-             document.body.appendChild(button);
-             document.body.appendChild(falseBtn);
+             wrapper.appendChild(button);
+             wrapper.appendChild(falseBtn);
          }
 
          else if (rounds == 1) {
             console.log(rounds+"andra");
-            document.body.appendChild(falseBtn);
-            document.body.appendChild(button);
+            wrapper.appendChild(falseBtn);
+            wrapper.appendChild(button);
             
          }
 
          else if (rounds == 2) {
             console.log(rounds+"andra");
-            document.body.appendChild(button);
-            document.body.appendChild(falseBtn);
+            wrapper.appendChild(button);
+            wrapper.appendChild(falseBtn);
             
          }
         }
