@@ -1,27 +1,24 @@
 "use strict";
 
-import { cities, apiKey } from "./constants.js";
+import { cities} from "./constants.js";
 
 //Set random number
 let randNum = Math.floor(Math.random() * cities.length);
 //Set elements and objects
 let cityNameEl = document.getElementById('cityNamePresent');
-let submitButtonEl = document.getElementById('submit-button');
-let answerEl = document.getElementById('answer');
 let form = document.forms.guess;
 let messageEl = document.getElementById('answer');
+const unit = "metric"
 
 //Get random city and data for the city
 const fetchCity = fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cities[randNum]}&limit=5&appid=4c71ba6fffb38a4baae0fe5623ee9a03`)
     .then(response => response.json())
     .then(data => {
         return data;
-});
+        })
+        .catch(err => showMessage("Sorry, something went wrong. Try again!"))
+        ;
 
-//function 
-function showMessage(message) {
-    messageEl.innerHTML = message;
- }
 //saving temp to be able to use it further down
 function getTemp() {
     return localStorage.getItem("temp") || "";
@@ -29,15 +26,15 @@ function getTemp() {
 
 //Get temp for city based on coordinates
 const fetchTemp = (lat, long) => {
-    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=4c71ba6fffb38a4baae0fe5623ee9a03`)
+    return fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${unit}&appid=4c71ba6fffb38a4baae0fe5623ee9a03`)
         .then(function(res) {
             return res.json();
             })
             .then(function(data) {
-                let kelvin = data.main.temp;
-                return Math.floor(kelvin - 273.15);
+                let temp = data.main.temp;
+                return Math.floor(temp);
                 })
-                .catch(err => showErrormessage("Sorry, something went wrong. Try again!"))
+                .catch(err => showMessage("Sorry, something went wrong. Try again!"))
                 };
 
 //wait for and set variables from the API-information fetched
@@ -55,17 +52,26 @@ window.onload = async () => {
 //Refresh button
 const refreshButton = document.getElementById('refresh-button');
 
+//function to refresh page
 const refreshPage = () => {
   window.location.reload();
 }
-
+//on click, run function refreshPage
 refreshButton.addEventListener('click', refreshPage);
+
 
 //Get guess
 form.onsubmit = function (event) {
     event.preventDefault();
+
     let guess = this.elements.guess.value;
     let temp = getTemp();
+
+
+    if (!guess) {
+        showMessage("Make a guess!");
+        return;
+      }
 
     //convert guess and temp to numbers
     guess = Number(guess);
@@ -75,17 +81,18 @@ form.onsubmit = function (event) {
     if (guess === temp) {
         showMessage("Success!");
     }
+    else if (isNaN(guess)){
+        showMessage("That is not a number, guess again!");
+    }
     else if (guess < temp) {
         showMessage("Higher! Guess again");
     }
     else if (guess > temp) {
         showMessage("Lower! Guess again");
     }
-    else if (guess === NaN){
-        showMessage("That is not a number, guess again!");
-    }
-
-    function showMessage(message){
-        messageEl.innerHTML = message;
-    }
 }
+
+//function to show message about guess
+function showMessage(message) {
+    messageEl.innerHTML = message;
+ }
