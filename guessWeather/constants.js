@@ -1,5 +1,3 @@
-export const apiKey = "09d06884b4492b7ede8409908bc6bad3";
-
 export const cities = [
     "Shanghai",
     "Buenos Aires",

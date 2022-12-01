@@ -1,6 +1,6 @@
 "use strict";
 
-import { cities} from "./constants.js";
+import {cities} from "./constants.js";
 
 //Set random number
 let randNum = Math.floor(Math.random() * cities.length);
