@@ -3,7 +3,7 @@
 //set starting score to 0
 let score = 0;
 
-  //Set variables for the timer
+//Set variables for the timer
 const timerEl = document.getElementById("timer");
 let timer;
 let timerStart;
@@ -11,6 +11,12 @@ let timerStart;
 //create start button element to run main and genFood function, start timer, and hide the button to start the game
 let startButtonEl = document.getElementById("start-button");
 let refreshButtonEl = document.getElementById("refresh-button");
+
+//create element for game over-banner
+const gameOverBannerEl = document.getElementById("game-over-banner");
+
+//eventlistner to start function startGame when it's clicked
+startButtonEl.addEventListener("click", startGame);
 
 //Start and keep game running
 function startGame(){ 
@@ -23,13 +29,11 @@ function startGame(){
         updateTimer();
       }, 10);
 }
-//eventlistner to start function startGame when it's clicked
-startButtonEl.addEventListener("click", startGame);
 
-//seeting the timer så it updates and shows the corrct minutes, seconds and centiseconds
+//setting the timer so it updates and shows the corrct minutes, seconds and centiseconds
 function updateTimer() {
     const time = Date.now() - timerStart;
-    const minutes = Math.floor(time/ 1000 /60);
+    const minutes = Math.floor(time/ 1000 / 60);
     const seconds = Math.floor(time / 1000) % 60;
     const centiseconds = Math.floor(time / 10) % 100;
 
@@ -40,13 +44,6 @@ function updateTimer() {
   
     timerEl.innerHTML = `${displayMinutes}:${displaySeconds}:${displayCentiseconds}`;
 }
-//Add function to refresh-button, to start a new game
-const refreshPage = () => {
-    window.location.reload();
-  }
-  
-  refreshButtonEl.addEventListener('click', refreshPage);
-
 
 //get canvas element
 const snakeBoard = document.getElementById("gameCanvas");
@@ -67,7 +64,7 @@ let snake = [
 
 // True if changing direction
 let changing_direction = false;
-// Horizontal velocity
+//Food coordinates
 let food_x;
 let food_y;
 // Horizontal velocity, delta x
@@ -77,8 +74,6 @@ let dy = 0;
 
 document.addEventListener("keydown", change_direction);
 
-const gameOverBannerEl = document.getElementById("game-over-banner");
-    
     // main function called repeatedly to keep the game running
 function main() {  
     if (hasGameEnded()) {
@@ -191,11 +186,13 @@ function change_direction(event) {
     else {
         changing_direction = true;
         const keyPressed = event.keyCode;
+
+        //checking which direction the train is going
         const goingUp = dy === -10;
         const goingDown = dy === 10;
         const goingRight = dx === 10;
         const goingLeft = dx === -10;
-      //change direction based on key pressed, if the snake-train isn't already going there
+      //change direction based on key pressed, if the snake-train isn't already going there or going the opposite direction
         if (keyPressed === LEFT_KEY && !goingRight) {
             dx = -10;
             dy = 0;
@@ -233,3 +230,10 @@ function moveSnake() {
       snake.pop();
     }
   }
+
+//Add function to refresh-button, to start a new game
+const refreshPage = () => {
+  window.location.reload();
+}
+
+refreshButtonEl.addEventListener('click', refreshPage);

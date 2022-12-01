@@ -4,14 +4,14 @@
 const wishlistEl = document.getElementById("wishlist");
 const wishlistFormEl = document.getElementById("wishlistForm");
 
-//creating an object from the string inputted by user, inputting into array of objects
+//creating array of previously sotored items, or just an empty array if there is none stored
 let wishes = JSON.parse(localStorage.getItem("wishes")) || [];
 updateWishes();
 
 //creating the array with stored and new information inputted by the user
 function updateWishes () {
     localStorage.setItem("wishes", JSON.stringify(wishes));
-    //setting a blank string as the list to beging with
+    //setting a blank string as the list item to beging with
     wishlistEl.innerHTML = "";
 
     //creating a list item with every new and stored index of the array of wishes
